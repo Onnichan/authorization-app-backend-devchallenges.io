@@ -26,12 +26,12 @@ class AuthService {
     };
 
     const token = JwtHelper.generateToken(userToEncode, "4h");
-    console.log("token", token)
+    console.log("token", token);
     return { token, user: userExist };
   }
 
-  async logout(){
-    JwtHelper.generateToken()
+  async logout() {
+    JwtHelper.generateToken();
   }
 }
 

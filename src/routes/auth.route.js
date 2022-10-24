@@ -7,6 +7,6 @@ module.exports = function () {
 
   router.post("/login", AuthController.login);
   router.post("/register", AuthController.register);
-  router.post("/logout",[authMiddleware] ,AuthController.logout)
+  router.post("/logout", [authMiddleware], AuthController.logout);
   return router;
 };

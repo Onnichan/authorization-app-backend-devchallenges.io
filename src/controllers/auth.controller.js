@@ -14,7 +14,7 @@ class AuthController {
     return res.send(creds);
   }
 
-  async logout(){
+  async logout() {
     const logout = await AuthService.logout();
     return res.send(logout);
   }

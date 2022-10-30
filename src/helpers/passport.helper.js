@@ -13,18 +13,20 @@ passport.use(
     async function (accessToken, refreshToken, profile, done) {
       console.log(profile);
 
-      const foundUser = await UserModel.findOne({ where: { oauth_id: profile.id } });
+      const foundUser = await UserModel.findOne({
+        where: { oauth_id: profile.id },
+      });
       if (foundUser) {
         return done(null, false);
       } else {
         const user = {
-          oauth_id : profile.id,
+          oauth_id: profile.id,
           name: profile.name.givenName,
           lastname: profile.name.familyName,
           image: profile.photos[0].value,
           provider: profile.provider,
-          email: profile.emails[0].value
-        }
+          email: profile.emails[0].value,
+        };
         await UserModel.create(user);
         return done(null, profile);
       }

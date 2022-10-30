@@ -11,11 +11,17 @@ module.exports = function () {
   router.post("/register", AuthController.register);
   router.get(
     "/google",
-    GooglePassport.authenticate("google", { scope: ["profile", "email"], session: false})
+    GooglePassport.authenticate("google", {
+      scope: ["profile", "email"],
+      session: false,
+    })
   );
   router.get(
     "/google/callback",
-    GooglePassport.authenticate("google", { failureRedirect: "/login", session: false }),
+    GooglePassport.authenticate("google", {
+      failureRedirect: "/login",
+      session: false,
+    }),
     function (req, res) {
       // Successful authentication, redirect home.
       console.log("here");

@@ -13,11 +13,11 @@ User.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    oauth_id:{
+    oauth_id: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    provider:{
+    provider: {
       type: DataTypes.STRING,
       allowNull: true,
     },

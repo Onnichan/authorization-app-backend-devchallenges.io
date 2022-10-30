@@ -1,7 +1,8 @@
 const { Router, json } = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const session = require("express-session");
+// const session = require("express-session");
+const morgan = require("morgan")
 // const compression = require('compression')
 const AuthRoutes = require("./auth.route");
 const notFoundMiddleware = require("../middlewares/notfound.middleware");
@@ -15,15 +16,16 @@ module.exports = function () {
   apiRoutes.use(json());
   // apiRoutes.use(compression())
   apiRoutes.use(helmet());
-  apiRoutes.use(
-    session({
-      secret: "Keyboard",
-      resave: true,
-      saveUninitialized: true,
-    })
-  );
+  apiRoutes.use(morgan('dev'))
+  // apiRoutes.use(
+  //   session({
+  //     secret: "Keyboard",
+  //     resave: true,
+  //     saveUninitialized: true,
+  //   })
+  // );
   apiRoutes.use(passport.initialize());
-  apiRoutes.use(passport.session());
+  // apiRoutes.use(passport.session());
   apiRoutes.use(cors());
   apiRoutes.use("/auth", AuthRoutes());
 

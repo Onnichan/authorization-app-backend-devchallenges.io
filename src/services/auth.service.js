@@ -25,7 +25,7 @@ class AuthService {
       id: userExist.id,
     };
 
-    const token = JwtHelper.generateToken(userToEncode, "4h");
+    const token = JwtHelper.generateToken(userToEncode, "1h");
     console.log("token", token);
     return { token, user: userExist };
   }

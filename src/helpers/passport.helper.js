@@ -10,8 +10,24 @@ passport.use(
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:4000/api/v1/auth/google/callback",
     },
-    function (accessToken, refreshToken, profile, cb) {
+    async function (accessToken, refreshToken, profile, done) {
       console.log(profile);
+
+      const foundUser = await UserModel.findOne({ where: { oauth_id: profile.id } });
+      if (foundUser) {
+        return done(null, false);
+      } else {
+        const user = {
+          oauth_id : profile.id,
+          name: profile.name.givenName,
+          lastname: profile.name.familyName,
+          image: profile.photos[0].value,
+          provider: profile.provider,
+          email: profile.emails[0].value
+        }
+        await UserModel.create(user);
+        return done(null, profile);
+      }
       // UserModel.findOrCreate({ googleId: profile.id }, function (err, user) {
       //   return cb(err, user);
       // });
@@ -23,10 +39,9 @@ passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-    done(err, user);
-  });
+passport.deserializeUser(async (id, done) => {
+  const user = await UserModel.findByPk(id);
+  done(null, user);
 });
 
 module.exports = passport;

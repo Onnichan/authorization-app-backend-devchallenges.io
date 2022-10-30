@@ -13,6 +13,14 @@ User.init(
       autoIncrement: true,
       primaryKey: true,
     },
+    oauth_id:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    provider:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,7 +31,7 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -35,10 +43,10 @@ User.init(
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        is: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/,
-      },
+      allowNull: true,
+      // validate: {
+      //   is: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/,
+      // },
     },
     image: {
       type: DataTypes.STRING,

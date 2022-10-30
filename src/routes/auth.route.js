@@ -11,17 +11,20 @@ module.exports = function () {
   router.post("/register", AuthController.register);
   router.get(
     "/google",
-    GooglePassport.authenticate("google", { scope: ["profile"] })
+    GooglePassport.authenticate("google", { scope: ["profile", "email"], session: false})
   );
   router.get(
     "/google/callback",
-    GooglePassport.authenticate("google", { failureRedirect: "/login" }),
+    GooglePassport.authenticate("google", { failureRedirect: "/login", session: false }),
     function (req, res) {
       // Successful authentication, redirect home.
       console.log("here");
-      res.redirect("/");
     }
   );
   // router.post("/logout", [authMiddleware], AuthController.logout);
+  router.get("/logout", (req, res) => {
+    req.logout();
+    // res.redirect(CLIENT_URL);
+  });
   return router;
 };

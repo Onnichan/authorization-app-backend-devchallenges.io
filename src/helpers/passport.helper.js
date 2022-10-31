@@ -11,39 +11,37 @@ passport.use(
       callbackURL: "http://localhost:4000/api/v1/auth/google/callback",
     },
     async function (accessToken, refreshToken, profile, done) {
-      console.log(profile);
+      // console.log(profile);
 
       const foundUser = await UserModel.findOne({
         where: { oauth_id: profile.id },
       });
+      const user = {
+        oauth_id: profile.id,
+        name: profile.name.givenName,
+        lastname: profile.name.familyName,
+        image: profile.photos[0].value,
+        provider: profile.provider,
+        email: profile.emails[0].value,
+      };
       if (foundUser) {
-        return done(null, false);
+        console.log('founded', user)
+        return done(null, user);
       } else {
-        const user = {
-          oauth_id: profile.id,
-          name: profile.name.givenName,
-          lastname: profile.name.familyName,
-          image: profile.photos[0].value,
-          provider: profile.provider,
-          email: profile.emails[0].value,
-        };
         await UserModel.create(user);
-        return done(null, profile);
+        return done(null, user);
       }
-      // UserModel.findOrCreate({ googleId: profile.id }, function (err, user) {
-      //   return cb(err, user);
-      // });
     }
   )
 );
 
-passport.serializeUser(function (user, done) {
-  done(null, user.id);
-});
+// passport.serializeUser(function (user, done) {
+//   done(null, user.id);
+// });
 
-passport.deserializeUser(async (id, done) => {
-  const user = await UserModel.findByPk(id);
-  done(null, user);
-});
+// passport.deserializeUser(async (id, done) => {
+//   const user = await UserModel.findByPk(id);
+//   done(null, user);
+// });
 
 module.exports = passport;

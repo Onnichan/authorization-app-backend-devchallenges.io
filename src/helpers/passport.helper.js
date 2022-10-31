@@ -25,7 +25,7 @@ passport.use(
         email: profile.emails[0].value,
       };
       if (foundUser) {
-        console.log('founded', user)
+        console.log("founded", user);
         return done(null, user);
       } else {
         await UserModel.create(user);

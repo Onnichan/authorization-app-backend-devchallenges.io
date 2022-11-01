@@ -12,10 +12,10 @@ module.exports = function () {
   router.post("/register", AuthController.register);
   router.get("/login/success", (req, res) => {
     if (req.user) {
-    console.log("req.user", req.user);
-    // const token = JWTHelper.generateToken(req.user, "1h");
-    // console.log(token);
-    return res.send(req.user);
+      console.log("req.user", req.user);
+      // const token = JWTHelper.generateToken(req.user, "1h");
+      // console.log(token);
+      return res.send(req.user);
     }
   });
   router.get(

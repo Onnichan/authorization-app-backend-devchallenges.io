@@ -11,7 +11,6 @@ passport.use(
       callbackURL: "http://localhost:4000/api/v1/auth/google/callback",
     },
     async function (accessToken, refreshToken, profile, done) {
-
       const foundUser = await UserModel.findOne({
         where: { oauth_id: profile.id },
       });

@@ -26,11 +26,13 @@ module.exports = function () {
   );
   apiRoutes.use(passport.initialize());
   apiRoutes.use(passport.session());
-  apiRoutes.use(cors({
-		origin: "http://localhost:5173",
-		methods: "GET,POST,PUT,DELETE",
-		credentials: true,
-	}));
+  apiRoutes.use(
+    cors({
+      origin: "http://localhost:5173",
+      methods: "GET,POST,PUT,DELETE",
+      credentials: true,
+    })
+  );
   apiRoutes.use("/auth", AuthRoutes());
 
   router.use("/api/v1", apiRoutes);

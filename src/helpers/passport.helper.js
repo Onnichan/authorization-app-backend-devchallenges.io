@@ -11,7 +11,6 @@ passport.use(
       callbackURL: "http://localhost:4000/api/v1/auth/google/callback",
     },
     async function (accessToken, refreshToken, profile, done) {
-      // console.log(profile);
 
       const foundUser = await UserModel.findOne({
         where: { oauth_id: profile.id },
@@ -24,24 +23,25 @@ passport.use(
         provider: profile.provider,
         email: profile.emails[0].value,
       };
+
+      // req.user = user;
       if (foundUser) {
         console.log("founded", user);
-        return done(null, user);
+        done(null, user);
       } else {
         await UserModel.create(user);
-        return done(null, user);
+        done(null, user);
       }
     }
   )
 );
 
-// passport.serializeUser(function (user, done) {
-//   done(null, user.id);
-// });
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
 
-// passport.deserializeUser(async (id, done) => {
-//   const user = await UserModel.findByPk(id);
-//   done(null, user);
-// });
+passport.deserializeUser(async (user, done) => {
+  done(null, user);
+});
 
 module.exports = passport;

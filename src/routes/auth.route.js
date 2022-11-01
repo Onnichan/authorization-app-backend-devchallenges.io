@@ -11,18 +11,18 @@ module.exports = function () {
   router.post("/login", AuthController.login);
   router.post("/register", AuthController.register);
   router.get("/login/success", (req, res) => {
-    // if (req.user) {
+    if (req.user) {
     console.log("req.user", req.user);
-    const token = JWTHelper.generateToken(req.user, "1h");
-    console.log(token);
-    return res.send({ token, user: req.user });
-    // }
+    // const token = JWTHelper.generateToken(req.user, "1h");
+    // console.log(token);
+    return res.send(req.user);
+    }
   });
   router.get(
     "/google",
     GooglePassport.authenticate("google", {
       scope: ["profile", "email"],
-      session: false,
+      // session: false,
     })
   );
   router.get(
@@ -30,13 +30,12 @@ module.exports = function () {
     GooglePassport.authenticate("google", {
       successRedirect: "http://localhost:5173/profile",
       failureRedirect: "",
-      session: false,
+      // session: false,
     })
   );
   // router.post("/logout", [authMiddleware], AuthController.logout);
   router.get("/logout", (req, res) => {
     req.logout();
-    // res.redirect(CLIENT_URL);
   });
   return router;
 };

@@ -6,7 +6,7 @@ const route = require("./src/routes");
 const app = express();
 
 sequelize
-  .sync({ logging: false })
+  .sync({ logging: false})
   .then(() => {
     app.use(route());
     app.listen(PORT, () => {

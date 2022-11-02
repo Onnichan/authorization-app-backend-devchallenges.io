@@ -16,8 +16,7 @@ passport.use(
       });
       const user = {
         oauth_id: profile.id,
-        name: profile.name.givenName,
-        lastname: profile.name.familyName,
+        name: profile.name.givenName + profile.name.familyName,
         image: profile.photos[0].value,
         provider: profile.provider,
         email: profile.emails[0].value,
@@ -26,6 +25,7 @@ passport.use(
       // req.user = user;
       if (foundUser) {
         console.log("founded", user);
+        user.id = foundUser.id,
         done(null, user);
       } else {
         await UserModel.create(user);

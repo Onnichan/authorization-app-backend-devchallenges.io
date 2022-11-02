@@ -11,6 +11,11 @@ class UserService {
     const getUser = await UserRepository.getUserByEmail(email);
     return getUser;
   }
+
+  async update(entity){
+    const updatedUser = await UserRepository.update(entity);
+    return updatedUser;
+  }
 }
 
 module.exports = new UserService();

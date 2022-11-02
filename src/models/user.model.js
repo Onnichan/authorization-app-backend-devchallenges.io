@@ -1,10 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
-const bcrypt = require("bcryptjs");
 const sequelize = require("../config/connection");
 
-class User extends Model {
-  comparePassword = (password) => bcrypt.compareSync(password, this.password);
-}
+class User extends Model {}
 
 User.init(
   {
@@ -25,13 +22,17 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    username: {
+    description: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // validate:{
+      //   min: 8,
+      //   max: 12
+      // }
     },
     email: {
       type: DataTypes.STRING,
@@ -55,14 +56,6 @@ User.init(
   },
   {
     sequelize,
-    hooks: {
-      beforeSave: (user) => {
-        if (user.password) {
-          const salt = bcrypt.genSaltSync(10, "a");
-          user.password = bcrypt.hashSync(user.password, salt);
-        }
-      },
-    },
     modelName: "User",
   }
 );

@@ -1,6 +1,5 @@
 const errorHelper = require("../helpers/error.helper");
 const UserService = require("./user.service");
-const JwtHelper = require("../helpers/jwt.helper");
 
 class AuthService {
   async register(user) {
@@ -20,18 +19,18 @@ class AuthService {
     const validPassword = userExist.comparePassword(password);
     if (!validPassword) errorHelper("Invalid Password", 400);
 
-    const userToEncode = {
-      username: userExist.username,
-      id: userExist.id,
-    };
+    // const userToEncode = {
+    //   username: userExist.username,
+    //   id: userExist.id,
+    // };
 
-    const token = JwtHelper.generateToken(userToEncode, "1h");
-    console.log("token", token);
-    return { token, user: userExist };
+    // const token = JwtHelper.generateToken(userToEncode, "1h");
+    // console.log("token", token);
+    return { user: userExist };
   }
 
   async logout() {
-    JwtHelper.generateToken();
+    // JwtHelper.generateToken();
   }
 }
 

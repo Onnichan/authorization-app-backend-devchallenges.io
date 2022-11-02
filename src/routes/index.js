@@ -5,6 +5,7 @@ const session = require("express-session");
 const morgan = require("morgan");
 // const compression = require('compression')
 const AuthRoutes = require("./auth.route");
+const UserRoutes = require("./user.route");
 const notFoundMiddleware = require("../middlewares/notfound.middleware");
 const errorMiddleware = require("../middlewares/error.middleware");
 const passport = require("passport");
@@ -34,6 +35,7 @@ module.exports = function () {
     })
   );
   apiRoutes.use("/auth", AuthRoutes());
+  apiRoutes.use("/user", UserRoutes());
 
   router.use("/api/v1", apiRoutes);
   router.use(notFoundMiddleware);

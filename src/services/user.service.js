@@ -12,7 +12,7 @@ class UserService {
     return getUser;
   }
 
-  async update(entity){
+  async update(entity) {
     const updatedUser = await UserRepository.update(entity);
     return updatedUser;
   }

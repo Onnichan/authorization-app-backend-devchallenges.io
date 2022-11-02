@@ -25,8 +25,7 @@ passport.use(
       // req.user = user;
       if (foundUser) {
         console.log("founded", user);
-        user.id = foundUser.id,
-        done(null, user);
+        (user.id = foundUser.id), done(null, user);
       } else {
         await UserModel.create(user);
         done(null, user);

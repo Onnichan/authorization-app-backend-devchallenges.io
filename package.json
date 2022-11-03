@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js",
+    "start": "node index.js",
     "format": "prettier \"**/*.js\" --write --ignore-path .gitignore",
     "prepare": "husky install"
   },

@@ -21,7 +21,7 @@ passport.use(
         provider: profile.provider,
         email: profile.emails[0].value,
       };
-      
+
       // req.user = user;
       if (foundUser) {
         console.log("founded", user);

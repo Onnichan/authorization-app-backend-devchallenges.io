@@ -7,6 +7,7 @@ module.exports = {
   PORT: process.env.PORT,
   DATABASE: process.env.DATABASE,
   HOST: process.env.HOST,
+  DB_PORT: process.env.DB_PORT,
   USER: process.env.USER,
   PASSWORD: process.env.PASSWORD,
   JWT_SECRET: process.env.JWT_SECRET,

@@ -15,7 +15,6 @@ class UserRepository {
     console.log(entity);
     const updated = await UserModel.update(entity, {
       where: {
-        // [Op.or]: [{ oauth_id: entity.oauth_id }, {id: entity.id}],
         id: entity.id,
       },
     });

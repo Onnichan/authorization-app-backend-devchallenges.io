@@ -25,10 +25,13 @@ passport.use(
       // req.user = user;
       if (foundUser) {
         console.log("founded", user);
-        (user.id = foundUser.id), done(null, user);
+        console.log(user);
+        // user.id = foundUser.id;
+        done(null, foundUser);
       } else {
-        await UserModel.create(user);
-        done(null, user);
+        const res = await UserModel.create(user);
+        // console.log("response", res.toJSON());
+        done(null, res.toJSON());
       }
     }
   )

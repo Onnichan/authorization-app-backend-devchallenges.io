@@ -24,7 +24,7 @@ module.exports = function () {
     session({
       secret: "Keyboard",
       store: new SequelizeStore({
-        db: sequelize
+        db: sequelize,
       }),
       resave: true,
       saveUninitialized: true,

@@ -11,6 +11,7 @@ module.exports = function () {
   //endpoint of success redirection for frontend
   router.get("/login/success", (req, res) => {
     console.log("calling to req.user");
+    console.log("req session", req.session)
     if (req.user) {
       // if it can use because there are sessions, with JWT it would not be possible
       console.log("req.user", req.user);

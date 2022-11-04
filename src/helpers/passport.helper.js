@@ -25,8 +25,8 @@ passport.use(
         provider: profile.provider,
         email: profile.emails[0].value,
       };
-
-      req.user = foundUser;
+      req.session.auth = "calcio";
+      req.session.user = foundUser;
       if (foundUser) {
         console.log("founded", user);
         console.log(user);

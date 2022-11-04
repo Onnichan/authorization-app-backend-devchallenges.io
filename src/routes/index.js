@@ -38,7 +38,7 @@ module.exports = function () {
     cors({
       origin: URL_BASE_FRONT,
       methods: "GET,POST,PUT,DELETE",
-      credentials: true,
+      // credentials: true,
     })
   );
   apiRoutes.use("/auth", AuthRoutes());

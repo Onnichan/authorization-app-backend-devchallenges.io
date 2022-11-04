@@ -30,7 +30,6 @@ module.exports = function () {
       store: myStore,
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: true },
     })
   );
   apiRoutes.use(passport.initialize());

@@ -6,7 +6,7 @@ const route = require("./src/routes");
 const app = express();
 
 myStore
-  .sync({ logging: true })
+  .sync({ logging: true, force: true })
   .then(() => {
     app.use(route());
     app.listen(PORT, () => {

@@ -1,12 +1,12 @@
 const express = require("express");
 const { PORT } = require("./src/config");
-const sequelize = require("./src/config/connection");
+const {myStore} = require("./src/config/connection");
 const route = require("./src/routes");
 
 const app = express();
 
-sequelize
-  .sync({ logging: false })
+myStore
+  .sync({ logging: true})
   .then(() => {
     app.use(route());
     app.listen(PORT, () => {

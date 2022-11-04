@@ -3,8 +3,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 const session = require("express-session");
 const morgan = require("morgan");
-const sequelize = require("../config/connection");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const {myStore} = require("../config/connection");
+// const SequelizeStore = require("connect-session-sequelize")(session.Store);
 // const compression = require('compression')
 const AuthRoutes = require("./auth.route");
 const UserRoutes = require("./user.route");
@@ -23,10 +23,11 @@ module.exports = function () {
   apiRoutes.use(
     session({
       secret: "Keyboard",
-      store: new SequelizeStore({
-        db: sequelize,
-      }),
-      resave: true,
+      // store: new SequelizeStore({
+      //   db: sequelize,
+      // }),
+      store: myStore,
+      resave: false,
       saveUninitialized: true,
     })
   );

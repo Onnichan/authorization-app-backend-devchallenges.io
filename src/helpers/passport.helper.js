@@ -1,5 +1,5 @@
 const passport = require("passport");
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require("../config/index");
+const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_CALLBACK } = require("../config/index");
 const UserModel = require("../models/user.model");
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
 
@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:4000/api/v1/auth/google/callback",
+      callbackURL: GOOGLE_CLIENT_CALLBACK,
     },
     async function (accessToken, refreshToken, profile, done) {
       const foundUser = await UserModel.findOne({

@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const AuthController = require("../controllers/auth.controller");
 const GooglePassport = require("../helpers/passport.helper");
+const {GOOGLE_CLIENT_SUCCESS_REDIRECT} = require("../config");
 
 module.exports = function () {
   const router = Router();
@@ -24,7 +25,7 @@ module.exports = function () {
   router.get(
     "/google/callback",
     GooglePassport.authenticate("google", {
-      successRedirect: "http://localhost:5173/profile",
+      successRedirect: `${GOOGLE_CLIENT_SUCCESS_REDIRECT}/profile`,
       failureRedirect: "",
     })
   );

@@ -14,7 +14,7 @@ passport.use(
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: GOOGLE_CLIENT_CALLBACK,
     },
-    async function (req,accessToken, refreshToken, profile, done) {
+    async function (req, accessToken, refreshToken, profile, done) {
       const foundUser = await UserModel.findOne({
         where: { oauth_id: profile.id },
       });

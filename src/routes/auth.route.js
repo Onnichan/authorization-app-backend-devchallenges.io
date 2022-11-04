@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const AuthController = require("../controllers/auth.controller");
 const GooglePassport = require("../helpers/passport.helper");
-const {GOOGLE_CLIENT_SUCCESS_REDIRECT} = require("../config");
+const { GOOGLE_CLIENT_SUCCESS_REDIRECT } = require("../config");
 
 module.exports = function () {
   const router = Router();

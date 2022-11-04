@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const session = require("express-session");
 const morgan = require("morgan");
 const { myStore } = require("../config/connection");
+const {URL_BASE_FRONT} = require("../config");
 // const SequelizeStore = require("connect-session-sequelize")(session.Store);
 // const compression = require('compression')
 const AuthRoutes = require("./auth.route");
@@ -35,7 +36,7 @@ module.exports = function () {
   apiRoutes.use(passport.session());
   apiRoutes.use(
     cors({
-      origin: "http://localhost:5173",
+      origin: URL_BASE_FRONT,
       methods: "GET,POST,PUT,DELETE",
       credentials: true,
     })

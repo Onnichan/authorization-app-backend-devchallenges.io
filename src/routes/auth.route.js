@@ -12,7 +12,7 @@ module.exports = function () {
   router.get("/login/success", (req, res) => {
     if (req.user) {
       // if it can use because there are sessions, with JWT it would not be possible
-      // console.log("req.user", req.user);
+      console.log("req.user", req.user);
       return res.send(req.user);
     }
   });

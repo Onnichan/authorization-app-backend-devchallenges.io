@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 module.exports = {
+  URL_BASE_FRONT: process.env.URL_BASE_FRONT,
   PORT: process.env.PORT,
   DATABASE: process.env.DATABASE,
   HOST: process.env.HOST,

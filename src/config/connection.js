@@ -17,5 +17,5 @@ const myStore = new SequelizeStore({
 // module.exports = sequelize;
 module.exports = {
   sequelize,
-  myStore
+  myStore,
 };

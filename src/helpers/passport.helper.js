@@ -1,5 +1,9 @@
 const passport = require("passport");
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_CALLBACK } = require("../config/index");
+const {
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
+  GOOGLE_CLIENT_CALLBACK,
+} = require("../config/index");
 const UserModel = require("../models/user.model");
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
 
